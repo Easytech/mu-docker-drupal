@@ -37,7 +37,6 @@ $cnd_memcache->connect('memcached', '11211');
 $key = 'condo_' . $conf['condo_site_id_md5'];
 $conf['condo_site_info'] = $cnd_memcache->get($key);
 if ($conf['condo_site_info'] === FALSE) {
-  print("Calling WS...");
   // Get other condo variables
   $conf['condo_site_info'] = array_shift(
     json_decode(
@@ -45,7 +44,7 @@ if ($conf['condo_site_info'] === FALSE) {
     )
   );
   if (is_object($conf['condo_site_info']) && isset($conf['condo_site_info']->uuid)) {
-    $cnd_memcache->set($key, $conf['condo_site_info']);
+    $cnd_memcache->set($key, $conf['condo_site_info'], MEMCACHE_COMPRESSED, 60);
   }
   else {
     die('Cannot get info for condo: ' . $conf['condo_site_id']);
