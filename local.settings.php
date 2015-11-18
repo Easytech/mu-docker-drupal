@@ -38,11 +38,11 @@ $key = 'condo_' . $conf['condo_site_id_md5'];
 $conf['condo_site_info'] = $cnd_memcache->get($key);
 if ($conf['condo_site_info'] === FALSE) {
   // Get other condo variables
-  $conf['condo_site_info'] = array_shift(
-    json_decode(
-      file_get_contents($conf['condo_idp_host'] . '/api/views/provisioning_service?args=' . $conf['condo_site_id_md5'])
-    )
-  );
+  $ws_response = file_get_contents($conf['condo_idp_host'] . '/api/views/provisioning_service?args=' . $conf['condo_site_id_md5']);
+  if (! empty($ws_response) ) {
+      $ws_response = json_decode( $ws_response );
+  }
+  $conf['condo_site_info'] = array_shift( $ws_response );
   if (is_object($conf['condo_site_info']) && isset($conf['condo_site_info']->uuid)) {
     $cnd_memcache->set($key, $conf['condo_site_info'], MEMCACHE_COMPRESSED, 60);
   }
