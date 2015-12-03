@@ -50,3 +50,28 @@ if ($conf['condo_site_info'] === FALSE) {
     die('Cannot get info for condo: ' . $conf['condo_site_id']);
   }
 }
+
+// Amazon S3 configuration
+// -----------------------------------------------------------------------------
+$conf['s3fs_awssdk2_access_key'] = 'AKIAIYSKPW7OREHDAHNA';
+$conf['s3fs_awssdk2_secret_key'] = '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';
+$conf['s3fs_awssdk2_default_cache_config'] = '';
+$conf['s3fs_awssdk2_use_instance_profile'] = 0;
+$conf['s3fs_bucket'] = $conf['condo_site_info']->amz_bucket;
+$conf['s3fs_cache_control_header'] = '';
+$conf['s3fs_domain'] = '';
+$conf['s3fs_encryption'] = '';
+$conf['s3fs_hostname'] = '';
+$conf['s3fs_ignore_cache'] = 0;
+$conf['s3fs_no_rewrite_cssjs'] = 0;
+$conf['s3fs_presigned_urls'] = '';
+$conf['s3fs_region'] = '';
+//$conf['s3fs_root_folder'] = $conf['condo_site_id_md5'];
+$conf['s3fs_root_folder'] = $conf['condo_site_id'];
+$conf['s3fs_saveas'] = '';
+$conf['s3fs_torrents'] = '';
+$conf['s3fs_use_cname'] = 0;
+$conf['s3fs_use_customhost'] = 0;
+$conf['s3fs_use_https'] = 1;
+$conf['s3fs_use_s3_for_private'] = 1;
+$conf['s3fs_use_s3_for_public'] = 1;
